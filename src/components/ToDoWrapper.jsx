@@ -6,12 +6,21 @@ import { ToDo } from "./ToDo";
 
 export const ToDoWrapper = () => {
   const [todos, setTodos] = useState([]);
-
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertType, setAlertType] = useState("");
+  
   const addTask = (task) => {
+    if (!task) {
+      setAlertMessage("Please add a task");
+      setAlertType("error");
+      return;
+    }
     setTodos([
       ...todos,
       { id: uuidv4(), task: task, completed: false, isEditing: false },
     ]);
+    setAlertMessage("Task added successfully!");
+    setAlertType("success");
   };
 
   const toggleComplete = (id) => {
@@ -20,10 +29,14 @@ export const ToDoWrapper = () => {
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
       )
     );
+    setAlertMessage("Task completed successfully!");
+    setAlertType("success");
   };
 
   const deleteTask = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
+    setAlertMessage("Task deleted successfully!");
+    setAlertType("success");
   };
 
   const editTask = (id) => {
@@ -40,11 +53,16 @@ export const ToDoWrapper = () => {
         todo.id === id ? { ...todo, task, isEditing: !todo.isEditing } : todo
       )
     );
+    setAlertMessage("Task updated successfully!");
+    setAlertType("success");
   };
 
   return (
     <div className="todo-wrapper">
       <h1>Simple ToDo App...</h1>
+      {alertMessage && (
+        <div className={`alert ${alertType}`}>{alertMessage}</div>
+      )}
       <ToDoForm addTask={addTask} />
       {todos.map((todo) =>
         todo.isEditing ? (
