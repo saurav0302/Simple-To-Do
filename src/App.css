@@ -12,10 +12,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* min-height: 100vh; */
+  padding: 20px;
 }
 
 .App {
   text-align: center;
+  width: 100%;
 }
 
 h1 {
@@ -26,10 +29,14 @@ h1 {
 
 .todo-wrapper {
   background: #f5a8c3;
-  margin-top: 5rem;
+  margin-top: 2rem;
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
 .todo-form {
@@ -75,6 +82,14 @@ h1 {
   margin-bottom: 1rem;
 }
 
+.todo p {
+  margin-right: 1rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  max-width: calc(100% - 70px);
+}
+
 .fa-trash {
   margin-left: 0.75rem;
 }
@@ -100,4 +115,63 @@ h1 {
 .edit-icon:hover,
 .delete-icon:hover {
   color: #e077a6; 
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .todo-wrapper {
+    margin-top: 1rem;
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .todo-wrapper {
+    padding: 1rem;
+  }
+
+  .todo-input {
+    width: calc(100% - 20px);
+    margin-bottom: 1rem;
+  }
+
+  .todo-btn {
+    width: calc(100% - 20px);
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .todo {
+    padding: 0.5rem 0.75rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .todo p {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .todo-wrapper {
+    padding: 0.75rem;
+  }
+
+  h1 {
+    font-size: 1.25rem;
+  }
+
+  .todo p {
+    font-size: 0.85rem;
+  }
 }
